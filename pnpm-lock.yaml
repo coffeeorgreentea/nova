@@ -7,13 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      nats:
-        specifier: ^2.28.0
-        version: 2.28.0
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
     devDependencies:
       '@types/node':
         specifier: ^20.14.11
@@ -1855,10 +1848,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nats@2.28.0:
-    resolution: {integrity: sha512-zXWOTOZEizUQy8UO2lMYFAee0htGrZLmJ2sddfmsDI00nc+dsK5+gS7p7bt26O1omfdCLVU5xymlnAjaqYnOmw==}
-    engines: {node: '>= 14.0.0'}
-
   nitro-nightly@3.0.0-beta-28665895.e727afda:
     resolution: {integrity: sha512-xVaHw8KDxkp9gn9thoN7Nf0qb7iPxTZ05QeiLWU6Dongt78wUTnan0oZkugj8x1eaFePCKZS8ZyWPjWkbThfQQ==}
     engines: {node: ^16.11.0 || >=17.0.0}
@@ -1868,10 +1857,6 @@ packages:
     peerDependenciesMeta:
       xml2js:
         optional: true
-
-  nkeys.js@1.1.0:
-    resolution: {integrity: sha512-tB/a0shZL5UZWSwsoeyqfTszONTt4k2YS0tuQioMOD180+MbombYVgzDUYHlx+gejYK6rgf08n/2Df99WY0Sxg==}
-    engines: {node: '>=10.0.0'}
 
   node-addon-api@7.1.1:
     resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
@@ -2489,9 +2474,6 @@ packages:
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
-  tweetnacl@1.0.3:
-    resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
-
   type-fest@4.22.1:
     resolution: {integrity: sha512-9tHNEa0Ov81YOopiVkcCJVz5TM6AEQ+CHHjFIktqPnE3NV0AHIkx+gh9tiCl58m/66wWxkOC9eltpa75J4lQPA==}
     engines: {node: '>=16'}
@@ -2669,9 +2651,6 @@ packages:
   zip-stream@6.0.1:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
-
-  zod@3.23.8:
-    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -4391,10 +4370,6 @@ snapshots:
 
   nanoid@3.3.7: {}
 
-  nats@2.28.0:
-    dependencies:
-      nkeys.js: 1.1.0
-
   nitro-nightly@3.0.0-beta-28665895.e727afda(typescript@5.5.3):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
@@ -4487,10 +4462,6 @@ snapshots:
       - supports-color
       - typescript
       - uWebSockets.js
-
-  nkeys.js@1.1.0:
-    dependencies:
-      tweetnacl: 1.0.3
 
   node-addon-api@7.1.1: {}
 
@@ -5101,8 +5072,6 @@ snapshots:
 
   tr46@0.0.3: {}
 
-  tweetnacl@1.0.3: {}
-
   type-fest@4.22.1: {}
 
   typescript@5.5.3: {}
@@ -5308,5 +5277,3 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.5.2
-
-  zod@3.23.8: {}

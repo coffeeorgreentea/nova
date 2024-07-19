@@ -9,8 +9,6 @@ Nova is a powerful and flexible framework for developing modules in the Nitro (b
 3. [Core Concepts](#core-concepts)
 4. [API Reference](#api-reference)
 5. [Advanced Usage](#advanced-usage)
-6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Installation
 
