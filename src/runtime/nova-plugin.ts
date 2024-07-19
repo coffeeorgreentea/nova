@@ -1,5 +1,5 @@
 import { defineNitroPlugin, useRuntimeConfig } from "nitro/runtime";
-import type { NovaRuntimeDefinition } from "../types";
+import type { NovaRuntimeDefinition } from "./types";
 import { consola } from "consola";
 
 type Awaitable<T> = T | Promise<T>;

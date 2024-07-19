@@ -1,5 +1,9 @@
 import type { NitroApp } from "nitro/types";
-import type { FeatureDefinition } from "../types";
+
+export interface FeatureDefinition {
+  name: string;
+  folder: string;
+}
 
 interface InitRuntimeFeatureParams<T, R> {
   nitro: NitroApp;
