@@ -1,4 +1,4 @@
-# Nova Framework for Nitro
+# Nova Framework for Nitro Modules
 
 Nova is a powerful and flexible framework for developing modules in the Nitro (by unjs) ecosystem. It provides a structured approach to creating, organizing, and managing Nitro modules with features like automatic plugin initialization, virtual file handling, and runtime setup. It's built ontop of defineNitroModule and defineNitroPlugin.
 

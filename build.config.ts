@@ -2,8 +2,9 @@ import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
   failOnWarn: false,
+  declaration: "compatible",
+
   externals: [
-    // "consola",
     "dot-prop",
     "globby",
     "ohash",
@@ -38,5 +39,7 @@ export default defineBuildConfig({
     "uncrypto",
     "iron-webcrypto",
     "unenv",
+    "nitro",
+    "nitro-nightly@3.0.0-beta-28665895.e727afda_typescript@5.5.3",
   ],
 });

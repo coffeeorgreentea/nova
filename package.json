@@ -1,16 +1,32 @@
 {
   "name": "nova",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "A framework and helpers for build modules for the Nitro framework",
+  "keywords": [
+    "nitro",
+    "nova",
+    "modules"
+  ],
+  "author": "coffeorgreentea",
+  "repository": "coffeorgreentea/nova",
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    },
+    "./dist/runtime/*": {
+      "types": "./dist/runtime/*.d.ts",
+      "default": "./dist/runtime/*.mjs"
+    }
+  },
   "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "default": "./dist/index.mjs"
-    }
-  },
   "scripts": {
     "build": "unbuild",
     "dev:nitro": "pnpm run -C examples/nitro dev",
@@ -22,9 +38,6 @@
     "test": "pnpm lint && pnpm test:types",
     "test:types": "tsc --noEmit --skipLibCheck"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "packageManager": "pnpm@9.3.0+sha256.e1f9e8d1a16607a46dd3c158b5f7a7dc7945501d1c6222d454d63d033d1d918f",
   "dependencies": {},
   "devDependencies": {
