@@ -33,9 +33,7 @@
       "types": "./dist/runtime/index.d.ts",
       "default": "./dist/runtime/index.mjs"
     }
-  },
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  },  
   "files": [
     "dist"
   ],
