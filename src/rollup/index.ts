@@ -1,7 +1,7 @@
-import { virtual } from "./vendor/virtual";
+import { virtual } from "../vendor/virtual";
 import { fileURLToPath } from "node:url";
 import type { Nitro } from "nitro/types";
-import { capitalize, getImportId } from "./module-utils";
+import { capitalize, getImportId } from "../module-utils";
 
 export const runtimeDir = fileURLToPath(
   new URL("dist/runtime/", import.meta.url)

@@ -2,16 +2,14 @@ import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
   failOnWarn: false,
-  declaration: "compatible",
+  declaration: true,
 
   entries: [
-    { input: "src/runtime/index.ts", outDir: "dist/runtime" },
-    // Config
     { input: "src/index.ts", outDir: "dist" },
-    // Core
     { input: "src/vendor/index.ts", outDir: "dist/vendor" },
-    { input: "src/rollup.ts", outDir: "dist" },
-    { input: "src/plugins.ts", outDir: "dist" },
+    { input: "src/rollup/index.ts", outDir: "dist/rollup" },
+    { input: "src/plugins/index.ts", outDir: "dist/plugins" },
+    { input: "src/runtime/index.ts", outDir: "dist/runtime" },
   ],
 
   externals: [
