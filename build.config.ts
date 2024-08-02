@@ -10,6 +10,8 @@ export default defineBuildConfig({
     { input: "src/index.ts", outDir: "dist" },
     // Core
     { input: "src/vendor/index.ts", outDir: "dist/vendor" },
+    { input: "src/rollup.ts", outDir: "dist" },
+    { input: "src/plugins.ts", outDir: "dist" },
   ],
 
   externals: [
