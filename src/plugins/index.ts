@@ -1,5 +1,5 @@
 import type { NovaModuleDefinition } from "../types";
-import { pushPlugin, resolveModulePath } from "../module-utils";
+import { pushPlugin, resolveModulePath } from "../utils";
 import { Nitro } from "nitro/types";
 
 /**

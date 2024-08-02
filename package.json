@@ -32,8 +32,12 @@
     "./runtime": {
       "types": "./dist/runtime/index.d.ts",
       "default": "./dist/runtime/index.mjs"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "default": "./dist/utils/index.mjs"
     }
-  },  
+  },
   "files": [
     "dist"
   ],

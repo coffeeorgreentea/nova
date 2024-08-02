@@ -1,7 +1,7 @@
 import type { NovaModuleDefinition } from "./types";
 import { defineNitroModule } from "nitro/kit";
 import { createRollupPlugin } from "./rollup";
-import { scan } from "./module-utils";
+import { scan } from "./utils";
 import { initializePlugins } from "./plugins";
 
 /**

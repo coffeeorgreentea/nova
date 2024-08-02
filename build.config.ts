@@ -10,6 +10,7 @@ export default defineBuildConfig({
     { input: "src/rollup/index.ts", outDir: "dist/rollup" },
     { input: "src/plugins/index.ts", outDir: "dist/plugins" },
     { input: "src/runtime/index.ts", outDir: "dist/runtime" },
+    { input: "src/utils/index.ts", outDir: "dist/utils" },
   ],
 
   externals: [

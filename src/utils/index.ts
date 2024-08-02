@@ -1,7 +1,7 @@
 import type { Nitro } from "nitro/types";
 import { fileURLToPath } from "node:url";
-import { scanServerRoutes } from "./vendor/scan";
-import type { ScanFeatureParams } from "./types";
+import { scanServerRoutes } from "../vendor/scan";
+import type { ScanFeatureParams } from "../types";
 import { hash } from "ohash";
 
 /**
