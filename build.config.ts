@@ -4,6 +4,14 @@ export default defineBuildConfig({
   failOnWarn: false,
   declaration: "compatible",
 
+  entries: [
+    { input: "src/runtime/index.ts", outDir: "dist/runtime" },
+    // Config
+    { input: "src/index.ts", outDir: "dist" },
+    // Core
+    { input: "src/vendor/index.ts", outDir: "dist/vendor" },
+  ],
+
   externals: [
     "dot-prop",
     "globby",
