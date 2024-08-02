@@ -1,4 +1,4 @@
-import { NitroApp, NitroRuntimeConfig } from "nitro/types";
+import type { NitroApp, NitroRuntimeConfig } from "nitro/types";
 
 export type VirtualFeatureHandler<V> = () => Promise<{
   default: V;
@@ -22,6 +22,7 @@ export interface NovaRuntimeDefinition<
   BeforeReturn = any,
   AfterReturn = any
 > {
+  useRuntimeConfig: () => any;
   initialize: (nitro: NitroApp, config: NitroRuntimeConfig) => InitializeReturn;
   before: (nitro: NitroApp, initialize: InitializeReturn) => BeforeReturn;
   after: (nitro: NitroApp, before: BeforeReturn) => AfterReturn;

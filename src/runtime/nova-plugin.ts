@@ -1,6 +1,10 @@
-import { defineNitroPlugin, useRuntimeConfig } from "nitro/runtime";
 import type { NovaRuntimeDefinition } from "./types";
 import { consola } from "consola";
+import type { NitroAppPlugin } from "nitro/types";
+
+export function defineNitroPlugin(def: NitroAppPlugin) {
+  return def;
+}
 
 type Awaitable<T> = T | Promise<T>;
 
@@ -16,6 +20,7 @@ export function defineNovaPlugin<
   BeforeReturn extends Awaitable<Record<string, any>> = any,
   AfterReturn extends Awaitable<Record<string, any>> = any
 >({
+  useRuntimeConfig,
   initialize,
   before,
   after,
