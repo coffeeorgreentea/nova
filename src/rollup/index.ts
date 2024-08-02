@@ -59,15 +59,22 @@ ${lazyImports
       `const ${getImportId(handler, true)} = () => import('${handler}');`
   )
   .join("\n")}
-
 export const handlers = [
-  ${typeHandlers.map((h) => JSON.stringify(cleanHandler(h))).join(",\n")}
+${typeHandlers
+  .map((h) => {
+    const handlerId = getImportId(h.handler, h.lazy);
+    return `{type: ${JSON.stringify(h.type)}, handler: ${handlerId}, lazy: ${
+      h.lazy
+    }, subject: ${JSON.stringify(h.subject)}, options: ${JSON.stringify(
+      h.options
+    )}}`;
+  })
+  .join(",\n")}
 ];
 `.trim();
     };
 
     const virtualFiles: Record<string, () => string> = {};
-
     for (const feature of features) {
       virtualFiles[`#${moduleName}-virtual/${feature}`] = () =>
         generateHandlerCode(getHandlers(), feature);
