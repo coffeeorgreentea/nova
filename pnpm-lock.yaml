@@ -6,7 +6,9 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  packages/nova:
     devDependencies:
       '@types/node':
         specifier: ^20.14.11
@@ -1503,8 +1505,8 @@ packages:
     resolution: {integrity: sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  h3-nightly@1.12.1-1721181184.a15b8de:
-    resolution: {integrity: sha512-tSiGDwuCUWYLTSQ952GlpFTTTS0AERF7awg9c9CSrH6atcD5FZCGFN6DZ3s1r1/yGmh6vm58UVJRN6p+Fdpsvw==}
+  h3-nightly@1.12.1-1721739391.a15b8de:
+    resolution: {integrity: sha512-LnBA1q3ktM30SZfYHcRJvXBxvOufKk2mH+RHke7sCi7uF1b3jrCWDrWQiIYlO954fFNQ+Rm8c2/5Y3HAkEXjqQ==}
 
   h3@1.12.0:
     resolution: {integrity: sha512-Zi/CcNeWBXDrFNlV0hUBJQR9F7a96RjMeAZweW/ZWkR9fuXrMcvKnSA63f/zZ9l0GgQOZDVHGvXivNN9PWOwhA==}
@@ -4032,7 +4034,7 @@ snapshots:
     dependencies:
       duplexer: 0.1.2
 
-  h3-nightly@1.12.1-1721181184.a15b8de:
+  h3-nightly@1.12.1-1721739391.a15b8de:
     dependencies:
       cookie-es: 1.2.1
       crossws: 0.2.4
@@ -4405,7 +4407,7 @@ snapshots:
       fs-extra: 11.2.0
       globby: 14.0.2
       gzip-size: 7.0.0
-      h3: h3-nightly@1.12.1-1721181184.a15b8de
+      h3: h3-nightly@1.12.1-1721739391.a15b8de
       hookable: 5.5.3
       httpxy: 0.1.5
       ioredis: 5.4.1
