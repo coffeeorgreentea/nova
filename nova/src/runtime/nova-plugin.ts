@@ -15,7 +15,7 @@ type Awaitable<T> = T | Promise<T>;
  */
 export function defineNovaPlugin<
   Config extends Record<string, string>,
-  T = any,
+  T extends Record<keyof Config, any>,
   InitializeReturn extends Awaitable<Record<string, any>> = any,
   BeforeReturn extends Awaitable<Record<string, any>> = any,
   AfterReturn extends Awaitable<Record<string, any>> = any
@@ -25,6 +25,7 @@ export function defineNovaPlugin<
   before,
   after,
   runtimeSetup,
+  runtimeHooks,
 }: NovaRuntimeDefinition<
   Config,
   T,
@@ -34,6 +35,13 @@ export function defineNovaPlugin<
 >) {
   return defineNitroPlugin(async (nitro) => {
     const config = useRuntimeConfig();
+
+    if (runtimeHooks) {
+      for (const hook of runtimeHooks) {
+        // nitro.hooks.hook(hook.name, hook.handler);
+        console.log(hook.name);
+      }
+    }
 
     try {
       const initResult = await initialize(nitro, config);
@@ -56,8 +64,20 @@ export function defineNovaPlugin<
  * @param runtimeSetup - The runtime setup configuration
  * @param nitro - The Nitro instance
  */
-async function initializeFeatures(
-  runtimeSetup: NovaRuntimeDefinition<any, any, any, any, any>["runtimeSetup"],
+async function initializeFeatures<
+  Config extends Record<string, string>,
+  T extends Record<keyof Config, any>,
+  InitializeReturn extends Awaitable<Record<string, any>> = any,
+  BeforeReturn extends Awaitable<Record<string, any>> = any,
+  AfterReturn extends Awaitable<Record<string, any>> = any
+>(
+  runtimeSetup: NovaRuntimeDefinition<
+    Config,
+    T,
+    InitializeReturn,
+    BeforeReturn,
+    AfterReturn
+  >["runtimeSetup"],
   nitro: any
 ) {
   if (!runtimeSetup) return;
