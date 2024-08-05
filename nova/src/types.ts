@@ -3,6 +3,7 @@ import type {
   NitroApp,
   NitroRuntimeHooks,
   NitroRuntimeConfig,
+  NitroHooks,
 } from "nitro/types";
 
 export interface FeatureDefinition {
@@ -18,6 +19,11 @@ export interface ScanFeatureParams {
 export type HookResult = void | Promise<void>;
 
 export interface NovaHook {
+  name: keyof NitroHooks;
+  handler: (...args: any[]) => HookResult;
+}
+
+export interface NovaRuntimeHook {
   name: keyof NitroRuntimeHooks;
   handler: (...args: any[]) => HookResult;
 }
@@ -41,8 +47,6 @@ export type ScannedFeatureHandler<S> = {
   default: S;
 };
 
-
-
 export type FeatureVirtualSetup<V> = (
   nitro: Nitro,
   handler: V
@@ -53,14 +57,19 @@ export interface NovaFeatureDefinition<Config extends FeatureConfig[]> {
   folder: string;
 }
 
-export interface NovaModuleDefinition<
-  Config extends Record<string, string>,
-  T = any
-> {
+type FeatureTypeFunction = (
+  handler: ScannedFeatureHandler<any>
+) => Promise<void> | void;
+
+export interface NovaModuleDefinition<F extends Record<string, string>> {
   name: string;
-  features: Config;
+  features: F;
+  featureTypeFunctions: Record<keyof F, FeatureTypeFunction>;
   pluginsDir?: string;
   utilsDir?: string;
   metaUrl: string;
-  hooks?: NovaHook[];
+  setup?: (nitro: Nitro) => Promise<void> | void;
+  hooks: NovaHook[];
 }
+
+export interface NovaFeatures {}
