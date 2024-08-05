@@ -8,7 +8,7 @@ importers:
 
   .: {}
 
-  modules/signals:
+  modules/nats:
     dependencies:
       consola:
         specifier: ^3.2.3
@@ -87,9 +87,9 @@ importers:
       '@gtc-nova/kit':
         specifier: workspace:*
         version: link:../nova
-      '@gtc-nova/signals':
+      '@gtc-nova/nats':
         specifier: workspace:*
-        version: link:../modules/signals
+        version: link:../modules/nats
       h3:
         specifier: 1.12.0
         version: 1.12.0
