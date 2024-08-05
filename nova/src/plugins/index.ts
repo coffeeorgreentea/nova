@@ -18,7 +18,10 @@ export async function initializePlugins<F extends Record<string, string>>(
     return;
   }
 
-  const pluginsPath = resolveModulePath("runtime/plugins", def.metaUrl);
+  const pluginsPath = resolveModulePath(
+    def.pluginsDir ?? "runtime/plugins",
+    def.metaUrl
+  );
   const plugins = await nitro.unimport.scanImportsFromDir([pluginsPath]);
 
   for (const plugin of plugins) {
