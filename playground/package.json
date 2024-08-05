@@ -1,0 +1,22 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "nitro dev",
+    "build": "nitro build",
+    "preview": "node .output/server/index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@gtc-nova/kit": "workspace:*",
+    "@gtc-nova/nats": "workspace:*",
+    "h3": "1.12.0"
+  },
+  "devDependencies": {
+    "nitro": "npm:nitro-nightly@3x"
+  }
+}
