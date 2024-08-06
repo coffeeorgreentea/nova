@@ -85,6 +85,9 @@ importers:
 
   nova:
     dependencies:
+      h3:
+        specifier: npm:h3-nightly@latest
+        version: h3-nightly@1.12.1-1721739391.a15b8de
       hookable:
         specifier: ^5.5.3
         version: 5.5.3
@@ -101,9 +104,6 @@ importers:
       globby:
         specifier: ^14.0.2
         version: 14.0.2
-      h3:
-        specifier: npm:h3-nightly@latest
-        version: h3-nightly@1.12.1-1721739391.a15b8de
       nitro:
         specifier: npm:nitro-nightly@3x
         version: nitro-nightly@3.0.0-beta-28665895.e727afda(typescript@5.5.3)

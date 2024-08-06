@@ -14,7 +14,8 @@
   "dependencies": {
     "@gtc-nova/kit": "workspace:*",
     "@gtc-nova/nats": "workspace:*",
-    "h3": "1.12.0"
+    "@gtc-nova/stripe": "workspace:*",
+    "h3": "npm:h3-nightly@latest"
   },
   "devDependencies": {
     "nitro": "npm:nitro-nightly@3x"
