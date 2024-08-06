@@ -1,0 +1,4 @@
+packages:
+  - "playground"
+  - "nova"
+  - "modules/*"

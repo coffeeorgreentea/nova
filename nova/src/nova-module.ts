@@ -3,6 +3,7 @@ import { defineNitroModule } from "nitro/kit";
 import { createRollupPlugin } from "./rollup";
 import { scan } from "./utils";
 import { initializePlugins } from "./plugins";
+import { writeNovaTypes } from "./utils/type-extension";
 
 /**
  * Defines a Nova module for the Nitro backend framework.
@@ -38,16 +39,35 @@ export function defineNovaModule<F extends Record<string, string>>(
 
       // Add Rollup plugin
       nitro.hooks.hook("rollup:before", async (nit, config) => {
-        // @ts-ignore - push exists here, but not in the type
+        // @ts-ignore
         config.plugins.push(
           createRollupPlugin(def.name, Object.keys(def.features))(nitro)
         );
+      });
+
+      nitro.options.typescript.generateRuntimeConfigTypes = true;
+
+      // Write feature types
+      nitro.hooks.hook("types:extend", async () => {
+        await writeNovaTypes(nitro, def.name, def.features);
       });
 
       // Initialize plugins
       if (def.pluginsDir) {
         await initializePlugins(nitro, def);
       }
+
+      if (def.hooks) {
+        for (const hook of def.hooks) {
+          nitro.hooks.hook(hook.name, hook.handler);
+        }
+      }
+
+      // Call custom setup function if provided
+      if (def.setup) {
+        await def.setup(nitro);
+      }
     },
   });
 }
+export type * from "./types";

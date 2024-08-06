@@ -10,7 +10,7 @@ export const runtimeDir = fileURLToPath(
 interface HandlerDefinition {
   type: string;
   handler: string;
-  subject?: string;
+  route?: string;
   options?: any;
   lazy?: boolean;
 }
@@ -35,7 +35,7 @@ export function createRollupPlugin(moduleName: string, features: string[]) {
       type: handler.type,
       handler: getImportId(handler.handler, handler.lazy),
       lazy: !!handler.lazy,
-      subject: handler.subject || null,
+      route: handler.route || null,
       options: handler.options || null,
     });
 
@@ -65,7 +65,7 @@ ${typeHandlers
     const handlerId = getImportId(h.handler, h.lazy);
     return `{type: ${JSON.stringify(h.type)}, handler: ${handlerId}, lazy: ${
       h.lazy
-    }, subject: ${JSON.stringify(h.subject)}, options: ${JSON.stringify(
+    }, route: ${JSON.stringify(h.route)}, options: ${JSON.stringify(
       h.options
     )}}`;
   })

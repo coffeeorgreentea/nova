@@ -1,23 +1,25 @@
 import type { NitroApp, NitroRuntimeConfig } from "nitro/types";
+import { NovaRuntimeHook } from "../types";
 
 export type VirtualFeatureHandler<V> = () => Promise<{
   default: V;
 }>;
 
-export type BaseVirtualHandler = {
+export type BaseVirtualHandler<V> = {
   type: string;
-  handler: VirtualFeatureHandler<any>;
+  handler: VirtualFeatureHandler<V>;
   lazy?: boolean;
+  route?: string;
 };
 
-type InitFeatureHandlers = (
+type InitFeatureHandlers<T> = (
   nitro: NitroApp,
-  handlers: BaseVirtualHandler[]
+  handlers: BaseVirtualHandler<T>[]
 ) => Promise<void> | void;
 
 export interface NovaRuntimeDefinition<
   Config extends Record<string, string>,
-  T = any,
+  T extends Record<keyof Config, any>,
   InitializeReturn = any,
   BeforeReturn = any,
   AfterReturn = any
@@ -26,11 +28,11 @@ export interface NovaRuntimeDefinition<
   initialize: (nitro: NitroApp, config: NitroRuntimeConfig) => InitializeReturn;
   before: (nitro: NitroApp, initialize: InitializeReturn) => BeforeReturn;
   after: (nitro: NitroApp, before: BeforeReturn) => AfterReturn;
-  runtimeSetup?: Record<
-    keyof Config,
-    {
-      initFeatureHandlers: InitFeatureHandlers;
-      getVirtualHandlers: () => BaseVirtualHandler[];
-    }
-  >;
+  runtimeSetup?: {
+    [K in keyof Config]: {
+      initFeatureHandlers: InitFeatureHandlers<T[K]>;
+      getVirtualHandlers: () => BaseVirtualHandler<T[K]>[];
+    };
+  };
+  runtimeHooks?: NovaRuntimeHook[];
 }

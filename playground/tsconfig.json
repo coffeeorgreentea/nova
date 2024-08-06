@@ -1,0 +1,28 @@
+{
+  // / <reference path="./signal-types.d.ts" />
+  // ensure a reference to the above
+  // file is added to the top of this file
+
+  "extends": "../../tsconfig.json",
+
+  "include": ["**/*.ts", "./.nitro/types/nats-types.d.ts"],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "noEmit": true
+  }
+}
