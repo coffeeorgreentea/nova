@@ -25,7 +25,6 @@ export function defineNovaPlugin<
   before,
   after,
   runtimeSetup,
-  runtimeHooks,
 }: NovaRuntimeDefinition<
   Config,
   T,
@@ -35,13 +34,6 @@ export function defineNovaPlugin<
 >) {
   return defineNitroPlugin(async (nitro) => {
     const config = useRuntimeConfig();
-
-    if (runtimeHooks) {
-      for (const hook of runtimeHooks) {
-        // nitro.hooks.hook(hook.name, hook.handler);
-        console.log(hook.name);
-      }
-    }
 
     try {
       const initResult = await initialize(nitro, config);

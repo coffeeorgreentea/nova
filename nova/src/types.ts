@@ -18,16 +18,6 @@ export interface ScanFeatureParams {
 
 export type HookResult = void | Promise<void>;
 
-export interface NovaHook {
-  name: keyof NitroHooks;
-  handler: (...args: any[]) => HookResult;
-}
-
-export interface NovaRuntimeHook {
-  name: keyof NitroRuntimeHooks;
-  handler: (...args: any[]) => HookResult;
-}
-
 export interface NovaPlugin {
   name: string;
   setup: (nitro: Nitro) => Promise<void> | void;
@@ -87,7 +77,6 @@ export interface NovaModuleDefinition<F extends Record<string, string>> {
   utilsDir?: string;
   metaUrl: string;
   setup?: (nitro: Nitro) => Promise<void> | void;
-  hooks: NovaHook[];
 }
 
 export interface NovaFeatures {}

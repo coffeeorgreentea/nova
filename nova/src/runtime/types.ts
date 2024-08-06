@@ -1,5 +1,4 @@
 import type { NitroApp, NitroRuntimeConfig } from "nitro/types";
-import { NovaRuntimeHook } from "../types";
 
 export type VirtualFeatureHandler<V> = () => Promise<{
   default: V;
@@ -34,5 +33,4 @@ export interface NovaRuntimeDefinition<
       getVirtualHandlers: () => BaseVirtualHandler<T[K]>[];
     };
   };
-  runtimeHooks?: NovaRuntimeHook[];
 }

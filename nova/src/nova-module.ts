@@ -57,12 +57,6 @@ export function defineNovaModule<F extends Record<string, string>>(
         await initializePlugins(nitro, def);
       }
 
-      if (def.hooks) {
-        for (const hook of def.hooks) {
-          nitro.hooks.hook(hook.name, hook.handler);
-        }
-      }
-
       // Call custom setup function if provided
       if (def.setup) {
         await def.setup(nitro);
