@@ -1,159 +1,132 @@
-# Nova Framework for Nitro Modules
+# Nova: A Toolkit for Building Nitro Modules
 
-Nova is a powerful and flexible framework for developing modules in the Nitro (by unjs) ecosystem. It provides a structured approach to creating, organizing, and managing Nitro modules with features like automatic plugin initialization, virtual file handling, and runtime setup. It's built ontop of defineNitroModule and defineNitroPlugin.
+## Features
 
-## Table of Contents
+- 🚀 Easy module definition with `defineNovaModule`
+- 🔌 Plugin system for runtime extensions
+- 🏗️ Structured approach to organizing module features
+- 🔄 Automatic type generation for enhanced developer experience
 
-1. [Installation](#installation)
-2. [Quick Start](#quick-start)
-3. [Core Concepts](#core-concepts)
-4. [API Reference](#api-reference)
-5. [Advanced Usage](#advanced-usage)
+## Getting Started
 
-## Installation
-
-To install Nova, use your preferred package manager:
+To use Nova in your Nitro project, first install it:
 
 ```bash
-npm install @your-org/nova-framework
-# or
-yarn add @your-org/nova-framework
-# or
-pnpm add @your-org/nova-framework
+npm install @gtc-nova/kit
 ```
 
-## Quick Start
-
-Here's a basic example of how to use Nova to create a Nitro module:
+Then, you can start defining your module:
 
 ```typescript
-import { defineNovaModule } from "@your-org/nova-framework";
+import { defineNovaModule } from "@gtc-nova/kit";
 
-export default defineNovaModule({
+export const myModule = defineNovaModule({
   name: "my-module",
   features: {
     api: "api",
-    routes: "routes",
+    hooks: "hooks",
   },
-  pluginsDir: "plugins",
+  pluginsDir: "./runtime/plugins",
+  metaUrl: import.meta.url,
+  hooks: [],
+});
+```
+
+## Defining Features
+
+Nova provides a flexible structure for organizing your module's features. Here's a generic example that can be adapted to various types of modules:
+
+```typescript
+export const moduleFeatures = {
+  core: "core", // the default exports in these folders will be scanned
+  othera: "other/a",
+  otherb: "other/b",
+} as const;
+
+export type ModuleFeatures = typeof moduleFeatures;
+
+export const genericModule = defineNovaModule<ModuleFeatures>({
+  name: "generic-module",
+  features: moduleFeatures,
+  pluginsDir: "./runtime/plugins",
   metaUrl: import.meta.url,
 });
 ```
 
-This example creates a Nova module named "my-module" with two features: "api" and "routes". It also specifies a plugins directory and the module's meta URL.
+## Creating Runtime Plugins
 
-## Core Concepts
-
-### Modules
-
-A Nova module is the main building block of your Nitro application. It encapsulates features, plugins, and runtime configurations.
-
-### Features
-
-Features are distinct functionalities within your module. They can represent different aspects of your application, such as API endpoints, routes, or custom logic.
-
-### Plugins
-
-Plugins are reusable pieces of code that can be automatically initialized and added to your Nitro application.
-
-### Virtual Files
-
-Nova uses a virtual file system to generate and manage dynamic content, such as feature handlers and runtime configurations.
-
-## API Reference
-
-### `defineNovaModule(options)`
-
-Creates a new Nova module.
-
-Parameters:
-
-- `options`: An object with the following properties:
-  - `name`: The name of the module (string)
-  - `features`: An object mapping feature names to their corresponding directories
-  - `pluginsDir`: (optional) The directory containing plugins
-  - `utilsDir`: (optional) The directory containing utility functions
-  - `metaUrl`: The `import.meta.url` of the module
-  - `hooks`: (optional) An array of custom hooks
-
-Returns: A Nitro module definition
-
-### `defineNovaPlugin(options)`
-
-Defines a Nova plugin for runtime configuration.
-
-Parameters:
-
-- `options`: An object with the following properties:
-  - `initialize`: A function to initialize the plugin
-  - `before`: A function to run before feature initialization
-  - `after`: A function to run after feature initialization
-  - `runtimeSetup`: (optional) An object containing runtime setup configurations for each feature
-
-Returns: A Nitro plugin definition
-
-## Advanced Usage
-
-### Custom Hooks
-
-You can define custom hooks for your Nova module:
+Nova allows you to define runtime plugins that extend the Nitro app. Here's an example of a plugin for a payment service:
 
 ```typescript
-import { defineNovaModule } from "@your-org/nova-framework";
-
-export default defineNovaModule({
-  // ... other options
-  hooks: [
-    {
-      name: "render:html",
-      handler: (html) => {
-        // Modify the HTML before rendering
-        return html.replace(
-          "</body>",
-          '<script>console.log("Hello from Nova!")</script></body>'
-        );
-      },
-    },
-  ],
-});
-```
-
-### Runtime Setup
-
-For more complex modules, you can use the `defineNovaPlugin` function to set up runtime configurations:
-
-```typescript
-import { defineNovaPlugin } from "@your-org/nova-framework";
+import { defineNovaPlugin } from "@gtc-nova/kit/runtime";
 
 export default defineNovaPlugin({
+  useRuntimeConfig,
   initialize: (nitro, config) => {
-    // Perform initialization tasks
+    // Initialize your service
     return {
-      /* initialization result */
+      /* initialization data */
     };
   },
-  before: (nitro, initResult) => {
-    // Run tasks before feature initialization
-    return {
-      /* before result */
-    };
-  },
-  after: (nitro, beforeResult) => {
-    // Run tasks after feature initialization
+  before: async (nitro, initData) => {
+    // Run setup before feature handlers are initialized
   },
   runtimeSetup: {
-    api: {
+    transactions: {
+      getVirtualHandlers: getVirtualTransactions,
       initFeatureHandlers: async (nitro, handlers) => {
-        // Initialize API handlers
-      },
-      getVirtualHandlers: () => {
-        // Return virtual handlers for the API feature
-        return [
-          /* handler definitions */
-        ];
+        // Initialize transaction handlers
       },
     },
     // ... other features
   },
+  after: (nitro, beforeData) => {
+    console.log("Plugin initialized successfully");
+  },
 });
 ```
+
+## Type Generation
+
+Nova automatically generates types for your module, enhancing the end users experience who use your module. These types are generated based on the features you define.
+
+Each module generates a single {module-name}.d.ts file that contains types for the modules features.
+
+```typescript
+import { Nitro, Serialize, Simplify } from "nitro/types";
+
+declare module "@gtc-nova/kit" {
+  type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
+  interface SubscriptionsHandlers {
+    "/userNotifications": typeof import("../../nats/subscriptions/userNotifications.ts").default;
+  }
+  interface PublishersHandlers {
+    "/userEvents": typeof import("../../nats/publishers/userEvents.ts").default;
+  }
+  interface NovaFeatures {
+    nats: {
+      subscriptions: SubscriptionsHandlers;
+      publishers: PublishersHandlers;
+    };
+  }
+}
+```
+
+You can use these types like this:
+
+```typescript
+import type { NovaFeatures } from "@gtc-nova/kit";
+
+type MyType = NovaFeatures["nats"]["subscriptions"]["/userNotifications"];
+```
+
+## Short term roadmap
+
+- Move Plugin Lifecycle to hooks, remove old hooks code
+- Extend type generation for arbitrary imports and types
+- Add support for custom hooks via the type generation
+- Add metadata for features like nitro route meta
+- Abstract citty CLI to extend nitro CLI with custom commands
+- Add module CLI injection
+- Find better way to orchestrat plugins
+- open PR in nitro to see if they would like me to add any pieces to nitro/kit
