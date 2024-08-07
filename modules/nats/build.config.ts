@@ -47,5 +47,9 @@ export default defineBuildConfig({
     "unenv",
     "nitro",
     "nitro-nightly@3.0.0-beta-28665895.e727afda_typescript@5.5.3",
+    "@gtc-nova/kit",
+    "@gtc-nova/vendor",
+    "@gtc-nova/kit/cli",
+    "listhen/cli",
   ],
 });
