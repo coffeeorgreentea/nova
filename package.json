@@ -2,7 +2,9 @@
   "name": "@gtc-nova/monrepo",
   "version": "0.0.1",
   "description": "Monorepo for Nova, a module toolkit for Nitro, and it's modules",
-  "scripts": {},
+  "scripts": {
+    "nova": "pnpm --filter playground nova"
+  },
   "keywords": [],
   "author": "coffeeorgreentea",
   "license": "MIT",
