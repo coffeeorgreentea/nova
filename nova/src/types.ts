@@ -1,9 +1,9 @@
+import type { Resolvable, SubCommandsDef } from "citty";
 import type {
   Nitro,
-  NitroApp,
   NitroRuntimeHooks,
-  NitroRuntimeConfig,
   NitroHooks,
+  NitroConfig,
 } from "nitro/types";
 
 export interface FeatureDefinition {
@@ -60,6 +60,24 @@ export interface NovaFeatureDefinition<Config extends FeatureConfig[]> {
 type FeatureTypeFunction = (
   handler: ScannedFeatureHandler<any>
 ) => Promise<void> | void;
+
+export interface NovaCLIDefinition {
+  name: string;
+  version: string;
+  description: string;
+  commands: Resolvable<SubCommandsDef>;
+  nitro?: boolean;
+  modules: any[];
+}
+
+export interface NovaCLIConfig {
+  name: string;
+  version: string;
+  description: string;
+  nitro?: boolean;
+  cliDir: string;
+  modules: NitroConfig["modules"];
+}
 
 export interface NovaModuleDefinition<F extends Record<string, string>> {
   name: string;
