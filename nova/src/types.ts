@@ -5,6 +5,7 @@ import type {
   NitroHooks,
   NitroConfig,
 } from "nitro/types";
+import { NovaTypeImport } from "./utils/type-extension";
 
 export interface FeatureDefinition {
   name: string;
@@ -69,10 +70,21 @@ export interface NovaCLIConfig {
   modules: NitroConfig["modules"];
 }
 
+export interface GeneratedHookTypes {
+  runtimeBeforeReturn?: Record<string, string>;
+  runtimeAfterReturn?: Record<string, string>;
+  runtimeBeforePayload?: Record<string, string>;
+  runtimeAfterPayload?: Record<string, string>;
+}
+
 export interface NovaModuleDefinition<F extends Record<string, string>> {
   name: string;
   features: F;
-  featureTypeFunctions: Record<keyof F, FeatureTypeFunction>;
+  typeExtension: {
+    hookTypes?: GeneratedHookTypes;
+    imports: NovaTypeImport[];
+  };
+
   pluginsDir?: string;
   utilsDir?: string;
   metaUrl: string;

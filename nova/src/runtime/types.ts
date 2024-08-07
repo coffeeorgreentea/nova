@@ -23,10 +23,11 @@ export interface NovaRuntimeDefinition<
   BeforeReturn = any,
   AfterReturn = any
 > {
+  moduleName: string;
   useRuntimeConfig: () => any;
   initialize: (nitro: NitroApp, config: NitroRuntimeConfig) => InitializeReturn;
-  before: (nitro: NitroApp, initialize: InitializeReturn) => BeforeReturn;
-  after: (nitro: NitroApp, before: BeforeReturn) => AfterReturn;
+  // before: (nitro: NitroApp, initialize: InitializeReturn) => BeforeReturn;
+  // after: (nitro: NitroApp, before: BeforeReturn) => AfterReturn;
   runtimeSetup?: {
     [K in keyof Config]: {
       initFeatureHandlers: InitFeatureHandlers<T[K]>;
@@ -34,3 +35,8 @@ export interface NovaRuntimeDefinition<
     };
   };
 }
+
+export type NovaRuntimeBeforeHookReturn = {};
+export type NovaRuntimeAfterHookReturn = {};
+export type NovaRuntimeBeforeHookPayload = {};
+export type NovaRuntimeAfterHookPayload = {};
