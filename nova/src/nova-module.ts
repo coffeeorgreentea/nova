@@ -49,7 +49,7 @@ export function defineNovaModule<F extends Record<string, string>>(
 
       // Write feature types
       nitro.hooks.hook("types:extend", async () => {
-        await writeNovaTypes(nitro, def.name, def.features);
+        await writeNovaTypes(nitro, def.name, def.features, def.typeExtension);
       });
 
       // Initialize plugins
