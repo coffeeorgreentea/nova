@@ -12,6 +12,9 @@
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
+  "bin": {
+    "nova": "./dist/cli/main/index.mjs"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -36,12 +39,21 @@
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "default": "./dist/utils/index.mjs"
+    },
+    "./cli": {
+      "types": "./dist/cli/index.d.ts",
+      "default": "./dist/cli/index.mjs"
+    },
+    "./cli/main": {
+      "types": "./dist/cli/main/index.d.ts",
+      "default": "./dist/cli/main/index.mjs"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
+    "nova": "jiti ./src/cli/main/index.ts",
     "build": "unbuild",
     "dev:nitro": "pnpm run -C examples/nitro dev",
     "dev:nuxt": "pnpm run -C examples/nuxt dev",
@@ -55,7 +67,12 @@
   "packageManager": "pnpm@9.3.0+sha256.e1f9e8d1a16607a46dd3c158b5f7a7dc7945501d1c6222d454d63d033d1d918f",
   "dependencies": {
     "hookable": "^5.5.3",
-    "h3": "npm:h3-nightly@latest"
+    "h3": "npm:h3-nightly@latest",
+    "c12": "^1.11.1",
+    "citty": "^0.1.6",
+    "jiti": "^2.0.0-beta.3",
+    "unimport": "^3.10.0",
+    "@gtc-nova/vendor": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.14.11",

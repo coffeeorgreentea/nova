@@ -11,6 +11,8 @@ export default defineBuildConfig({
     { input: "src/plugins/index.ts", outDir: "dist/plugins" },
     { input: "src/runtime/index.ts", outDir: "dist/runtime" },
     { input: "src/utils/index.ts", outDir: "dist/utils" },
+    { input: "src/cli/index.ts", outDir: "dist/cli" },
+    { input: "src/cli/main/index.ts", outDir: "dist/cli/main" },
   ],
 
   externals: [
