@@ -1,5 +1,8 @@
 import { defineNovaModule } from "@gtc-nova/kit";
 import { natsFeatures, type NatsFeatures } from "./features";
+import echo from "./echo";
+
+export const commands = [echo];
 
 export const natsModule = defineNovaModule<NatsFeatures>({
   name: "nats",
@@ -18,3 +21,5 @@ export const natsModule = defineNovaModule<NatsFeatures>({
 });
 
 export type * from "./types";
+
+export default natsModule;
