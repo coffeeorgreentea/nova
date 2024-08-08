@@ -2,3 +2,4 @@ packages:
   - "playground"
   - "nova"
   - "modules/*"
+  - "vendor"

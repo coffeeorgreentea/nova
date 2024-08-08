@@ -1,0 +1,28 @@
+{
+  "name": "@gtc-nova/vendor",
+  "version": "0.0.1",
+  "description": "",
+  "exports": {
+    ".": {
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "dist/index.mjs",
+  "scripts": {
+    "build:prep": "cp -r ./node_modules/nitro/dist/cli ./src/cli",
+    "build": "pnpm build:prep && pnpm unbuild"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "citty": "^0.1.6",
+    "consola": "^3.2.3",
+    "nitro": "npm:nitro-nightly@3x",
+    "pathe": "^1.1.2",
+    "unbuild": "^2.0.0"
+  },
+  "devDependencies": {
+    "listhen": "^1.7.2"
+  }
+}

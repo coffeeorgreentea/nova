@@ -1,11 +1,12 @@
 {
   "name": "playground",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "nitro dev",
-    "build": "nitro build",
+    "nova": "nova",
+    "dev": "nova dev",
+    "build": "nova build",
     "preview": "node .output/server/index.mjs"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
     "h3": "npm:h3-nightly@latest"
   },
   "devDependencies": {
+    "citty": "^0.1.6",
     "nitro": "npm:nitro-nightly@3x"
   }
 }

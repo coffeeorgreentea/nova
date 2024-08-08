@@ -2,18 +2,9 @@ import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
   failOnWarn: false,
-  declaration: true,
+  declaration: false,
 
-  entries: [
-    { input: "src/index.ts", outDir: "dist" },
-    { input: "src/vendor/index.ts", outDir: "dist/vendor" },
-    { input: "src/rollup/index.ts", outDir: "dist/rollup" },
-    { input: "src/plugins/index.ts", outDir: "dist/plugins" },
-    { input: "src/runtime/index.ts", outDir: "dist/runtime" },
-    { input: "src/utils/index.ts", outDir: "dist/utils" },
-    { input: "src/cli/index.ts", outDir: "dist/cli" },
-    { input: "src/cli/main/index.ts", outDir: "dist/cli/main" },
-  ],
+  entries: [{ input: "src/index.ts", outDir: "dist" }],
 
   externals: [
     "dot-prop",
@@ -52,5 +43,6 @@ export default defineBuildConfig({
     "unenv",
     "nitro",
     "nitro-nightly@3.0.0-beta-28665895.e727afda_typescript@5.5.3",
+    "listhen/cli",
   ],
 });
