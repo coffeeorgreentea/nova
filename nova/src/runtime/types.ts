@@ -1,5 +1,4 @@
 import type { NitroApp, NitroRuntimeConfig } from "nitro/types";
-import { NovaRuntimeHook } from "../types";
 
 export type VirtualFeatureHandler<V> = () => Promise<{
   default: V;
@@ -24,15 +23,20 @@ export interface NovaRuntimeDefinition<
   BeforeReturn = any,
   AfterReturn = any
 > {
+  moduleName: string;
   useRuntimeConfig: () => any;
   initialize: (nitro: NitroApp, config: NitroRuntimeConfig) => InitializeReturn;
-  before: (nitro: NitroApp, initialize: InitializeReturn) => BeforeReturn;
-  after: (nitro: NitroApp, before: BeforeReturn) => AfterReturn;
+  // before: (nitro: NitroApp, initialize: InitializeReturn) => BeforeReturn;
+  // after: (nitro: NitroApp, before: BeforeReturn) => AfterReturn;
   runtimeSetup?: {
     [K in keyof Config]: {
       initFeatureHandlers: InitFeatureHandlers<T[K]>;
       getVirtualHandlers: () => BaseVirtualHandler<T[K]>[];
     };
   };
-  runtimeHooks?: NovaRuntimeHook[];
 }
+
+export type NovaRuntimeBeforeHookReturn = {};
+export type NovaRuntimeAfterHookReturn = {};
+export type NovaRuntimeBeforeHookPayload = {};
+export type NovaRuntimeAfterHookPayload = {};

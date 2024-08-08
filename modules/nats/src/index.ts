@@ -17,7 +17,6 @@ export const natsModule = defineNovaModule<NatsFeatures>({
   },
   pluginsDir: "./../src/runtime/plugins",
   metaUrl: import.meta.url,
-  hooks: [],
 });
 
 export type * from "./types";

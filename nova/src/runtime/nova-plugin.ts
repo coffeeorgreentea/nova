@@ -1,10 +1,16 @@
 import type { NovaRuntimeDefinition } from "./types";
 import { consola } from "consola";
-import type { NitroAppPlugin } from "nitro/types";
+import type {
+  NitroAppPlugin,
+  NitroHooks,
+  NitroRuntimeHooks,
+} from "nitro/types";
 
 export function defineNitroPlugin(def: NitroAppPlugin) {
   return def;
 }
+
+type HookKeys<T> = keyof T;
 
 type Awaitable<T> = T | Promise<T>;
 
@@ -16,40 +22,43 @@ type Awaitable<T> = T | Promise<T>;
 export function defineNovaPlugin<
   Config extends Record<string, string>,
   T extends Record<keyof Config, any>,
-  InitializeReturn extends Awaitable<Record<string, any>> = any,
+  IR extends Awaitable<Record<string, any>> = any,
   BeforeReturn extends Awaitable<Record<string, any>> = any,
   AfterReturn extends Awaitable<Record<string, any>> = any
 >({
+  moduleName,
   useRuntimeConfig,
   initialize,
-  before,
-  after,
+  // before,
+  // after,
   runtimeSetup,
-  runtimeHooks,
-}: NovaRuntimeDefinition<
-  Config,
-  T,
-  InitializeReturn,
-  BeforeReturn,
-  AfterReturn
->) {
+}: NovaRuntimeDefinition<Config, T, IR, BeforeReturn, AfterReturn>) {
   return defineNitroPlugin(async (nitro) => {
     const config = useRuntimeConfig();
 
-    if (runtimeHooks) {
-      for (const hook of runtimeHooks) {
-        // nitro.hooks.hook(hook.name, hook.handler);
-        console.log(hook.name);
-      }
-    }
+    const beforeHook: HookKeys<NitroRuntimeHooks> =
+      `nova:${moduleName}:before` as any;
+    const afterHook: HookKeys<NitroRuntimeHooks> =
+      `nova:${moduleName}:after` as any;
 
     try {
       const initResult = await initialize(nitro, config);
-      const beforeResult = await before(nitro, initResult);
+      // const beforeResult = await before(nitro, initResult);
+      // await nitro.hooks.callHook(
+      //   // `nova:${moduleName}:before` as any as HookKeys<NitroHooks>,
+      //   beforeHook,
+      //   initResult
+      // );
 
-      await initializeFeatures(runtimeSetup, nitro);
+      // await initializeFeatures(runtimeSetup, nitro);
 
-      await after(nitro, beforeResult);
+      // // await after(nitro, beforeResult);
+
+      // await nitro.hooks.callHook(
+      //   // `nova:${moduleName}:after` as any as HookKeys<NitroHooks>,
+      //   afterHook,
+      //   initResult
+      // );
       consola.success("Nova plugin initialized.");
     } catch (error) {
       consola.error("Failed to initialize Nova plugin:", error);

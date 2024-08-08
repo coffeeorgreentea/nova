@@ -4,20 +4,18 @@ import { stripeFeatures, type StripeFeatures } from "./features";
 export const stripeModule = defineNovaModule<StripeFeatures>({
   name: "stripe",
   features: stripeFeatures,
-  featureTypeFunctions: {
-    payments: () => {
-      console.log("payments");
+  typeExtension: {
+    hookTypes: {
+      runtimeAfterPayload: {},
+      runtimeAfterReturn: {},
+      runtimeBeforePayload: {},
+      runtimeBeforeReturn: {},
     },
-    subscriptions: () => {
-      console.log("subscriptions");
-    },
-    webhooks: () => {
-      console.log("webhooks");
-    },
+
+    imports: [],
   },
   pluginsDir: "./../src/runtime/plugins",
   metaUrl: import.meta.url,
-  hooks: [],
 });
 
 export type * from "./types";

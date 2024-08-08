@@ -1,6 +1,6 @@
-import { defineCommand } from "@gtc-nova/kit/cli";
+import { defineNovaCommand } from "@gtc-nova/kit/cli";
 
-export default defineCommand({
+export default defineNovaCommand({
   meta: {
     name: "hello",
     description: "Say hello",

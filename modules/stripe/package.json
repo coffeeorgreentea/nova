@@ -28,6 +28,7 @@
     "unbuild": "^2.0.0"
   },
   "dependencies": {
+    "citty": "^0.1.6",
     "consola": "^3.2.3",
     "globby": "^14.0.2",
     "h3": "npm:h3-nightly@latest",
