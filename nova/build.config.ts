@@ -6,6 +6,7 @@ export default defineBuildConfig({
 
   entries: [
     { input: "src/index.ts", outDir: "dist" },
+    { input: "src/config/index.ts", outDir: "dist/config" },
     { input: "src/vendor/index.ts", outDir: "dist/vendor" },
     { input: "src/rollup/index.ts", outDir: "dist/rollup" },
     { input: "src/plugins/index.ts", outDir: "dist/plugins" },
