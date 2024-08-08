@@ -51,6 +51,9 @@ importers:
 
   modules/stripe:
     dependencies:
+      citty:
+        specifier: ^0.1.6
+        version: 0.1.6
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -97,6 +100,9 @@ importers:
       citty:
         specifier: ^0.1.6
         version: 0.1.6
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
       h3:
         specifier: npm:h3-nightly@latest
         version: h3-nightly@1.12.1-1721739391.a15b8de
