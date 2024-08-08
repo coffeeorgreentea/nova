@@ -5,11 +5,7 @@
 
   "extends": "../../tsconfig.json",
 
-  "include": [
-    "**/*.ts",
-    "./.nitro/types/nats-types.d.ts",
-    "./.nitro/types/stripe-types.d.ts"
-  ],
+  "include": ["**/*.ts", "./.nitro/types/nats-types.d.ts"],
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,

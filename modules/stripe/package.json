@@ -17,7 +17,7 @@
     "src/**/*d.ts"
   ],
   "scripts": {
-    "build": "unbuild"
+    "unfinished:build": "unbuild"
   },
   "keywords": [],
   "author": "",
