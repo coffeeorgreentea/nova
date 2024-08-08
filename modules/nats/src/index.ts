@@ -7,13 +7,15 @@ export const commands = [echo];
 export const natsModule = defineNovaModule<NatsFeatures>({
   name: "nats",
   features: natsFeatures,
-  featureTypeFunctions: {
-    subscriptions: () => {
-      console.log("hooks");
+  typeExtension: {
+    hookTypes: {
+      runtimeAfterPayload: {},
+      runtimeAfterReturn: {},
+      runtimeBeforePayload: {},
+      runtimeBeforeReturn: {},
     },
-    publishers: () => {
-      console.log("routes");
-    },
+
+    imports: [],
   },
   pluginsDir: "./../src/runtime/plugins",
   metaUrl: import.meta.url,
