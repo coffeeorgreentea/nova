@@ -122,11 +122,11 @@ type MyType = NovaFeatures["nats"]["subscriptions"]["/userNotifications"];
 
 ## Short term roadmap
 
-- Move Plugin Lifecycle to hooks, remove old hooks code
-- Extend type generation for arbitrary imports and types
+- ~~Move Plugin Lifecycle to hooks, remove old hooks code~~
+- ~~Extend type generation for arbitrary imports and types~~
 - Add support for custom hooks via the type generation
 - Add metadata for features like nitro route meta
-- Abstract citty CLI to extend nitro CLI with custom commands
+- ~~Abstract citty CLI to extend nitro CLI with custom commands~~
 - Add module CLI injection
-- Find better way to orchestrat plugins
-- open PR in nitro to see if they would like me to add any pieces to nitro/kit
+- Find better way to orchestrate plugins & modules
+- open PR in nitro to help support/expand nitro/kit development
